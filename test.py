@@ -12,6 +12,7 @@ def main(config):
     logger = config.get_logger('test')
 
     # setup data_loader instances
+    # 数据
     data_loader = getattr(module_data, config['data_loader']['type'])(
         config['data_loader']['args']['data_dir'],
         batch_size=512,
@@ -22,6 +23,7 @@ def main(config):
     )
 
     # build model architecture
+    # 模型
     model = config.init_obj('arch', module_arch)
     logger.info(model)
 
@@ -37,6 +39,7 @@ def main(config):
     model.load_state_dict(state_dict)
 
     # prepare model for testing
+    # 准备测试
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
     model.eval()

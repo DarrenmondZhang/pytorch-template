@@ -45,7 +45,7 @@ class BaseDataLoader(DataLoader):
         valid_idx = idx_full[0:len_valid]
         train_idx = np.delete(idx_full, np.arange(0, len_valid))
 
-        train_sampler = SubsetRandomSampler(train_idx)
+        train_sampler = SubsetRandomSampler(train_idx)  # 采样器方式，如果样本不均衡的话也可以选择WeighedRandomSampler方法
         valid_sampler = SubsetRandomSampler(valid_idx)
 
         # turn off shuffle option which is mutually exclusive with sampler
